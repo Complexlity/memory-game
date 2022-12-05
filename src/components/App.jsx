@@ -17,6 +17,7 @@ import gingFreeccs from "../assets/ging.jpg";
 import spongeBob from "../assets/spongebob.jpg";
 import levi from "../assets/levi.jpg";
 import { useEffect, useState } from "react";
+import MobileHeader from "./MobileHeader";
 
 const cardInit = [
   { title: "Naruto", avatar: naruto, id: uniqid(), selected: false },
@@ -114,6 +115,7 @@ function App() {
   return (
     <div className="App bg-gray-800">
       <Header score={score} bestScore={bestScore} max={max} />
+      <MobileHeader score={score} bestScore={bestScore} />
       <Cards cards={cards} makeSelected={makeSelected} />
     </div>
   );
