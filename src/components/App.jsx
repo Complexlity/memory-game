@@ -73,6 +73,13 @@ function App() {
       allCards = getRandom(allCards);
       setCards(allCards);
       setScore(score + 1);
+      if (score === 12) {
+        setMax(true);
+        setBestScore(score);
+        localStorage.setItem("Max", true);
+        alert("You Attained god hood. Congratulations");
+        resetToDefault();
+      }
     } else {
       alert("Game Over. Restarting...");
       resetToDefault();
@@ -101,10 +108,6 @@ function App() {
     if (score > bestScore) {
       setBestScore(score);
       localStorage.setItem("MemoryScore", score);
-      if (score === 12) {
-        setMax(true);
-        localStorage.setItem("Max", true);
-      }
     }
   }
 
