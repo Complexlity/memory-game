@@ -1,7 +1,7 @@
 import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
 
-const Header = ({ score, bestScore }) => {
+const Header = ({ score, bestScore, max }) => {
   return (
     <div className="flex items-center gap-4 py-4 px-4">
       <div className="flex w-full flex-1 sm:w-auto">

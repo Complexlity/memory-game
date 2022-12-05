@@ -56,10 +56,13 @@ function App() {
   const [cards, setCards] = useState([...cardInit]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [max, setMax] = useState(false);
 
   useEffect(() => {
     let yourScore = localStorage.getItem("MemoryScore");
+    let maxScore = localStorage.getItem("Max");
     if (yourScore) setBestScore(yourScore);
+    if (maxScore) setMax(true);
   }, []);
 
   function makeSelected(id) {
@@ -97,17 +100,17 @@ function App() {
     setScore(0);
     if (score > bestScore) {
       setBestScore(score);
-      writeToLocalStorage(score);
+      localStorage.setItem("MemoryScore", score);
+      if (score === 12) {
+        setMax(true);
+        localStorage.setItem("Max", true);
+      }
     }
-  }
-
-  function writeToLocalStorage(value) {
-    localStorage.setItem("MemoryScore", value);
   }
 
   return (
     <div className="App bg-gray-800">
-      <Header score={score} bestScore={bestScore} />
+      <Header score={score} bestScore={bestScore} max={max} />
       <Cards cards={cards} makeSelected={makeSelected} />
     </div>
   );
