@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Cards from "./Cards";
 import Header from "./Header";
 import Scoreboard from "./Scoreboard";
@@ -87,5 +88,17 @@ function App() {
     </div>
   );
 }
+// const App = () => {
+//   const [mount, setMount] = useState(true);
+//   return (
+//     <div className="flex items-center justify-center bg-orange-300">
+//       <motion.div
+//         animate={{ scale: mount ? 1 : 0 }}
 
+//         className="mx-auto h-24 w-24 rounded-xl bg-blue-400"
+//       ></motion.div>
+//       ;
+//     </div>
+//   );
+// };
 export default App;
