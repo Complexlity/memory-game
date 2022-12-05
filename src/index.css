@@ -1,11 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 .layout-grid {
   grid-template-columns: repeat(auto-fit, 250px);
 }
 
+@font-face {
+  font-family: scoringFont;
+  src: url("./assets/ConsertaDemoRegular-2znv.ttf");
+}
+
+@font-face {
+  font-family: charText;
+  src: url("./assets/RoyalFighter-2O7JW.ttf");
+}
+
+@font-face {
+  font-family: headerFont;
+  src: url("./assets/MerriweatherSans-VariableFont_wght.ttf");
+}
+
+.main-header {
+  font-family: "Permanent Marker", cursive;
+  font-size: 2.5rem;
+}
+.scoring {
+  font-family: scoringFont;
+  font-size: 1.5rem;
+}
+
+.names {
+  font-family: charText;
+}
 .card-grid {
   grid-template-rows: max-content 1fr;
   transition: scale ease 0.2s;

@@ -1,12 +1,12 @@
-import logo from "../assets/github.png";
+import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
 
 const Header = ({ score, bestScore }) => {
   return (
-    <div className="flex items-center gap-4 py-4 px-4 ">
+    <div className="flex items-center gap-4 py-4 px-4">
       <div className="flex w-full flex-1 sm:w-auto">
-        <h1 className="w-full text-center text-2xl md:text-4xl ">
-          Anime Memory Game
+        <h1 className="main-header w-full text-center text-3xl text-gray-200 md:text-5xl ">
+          Test Your Memory
         </h1>
         <a
           className="hidden"

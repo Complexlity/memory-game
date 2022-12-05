@@ -35,7 +35,7 @@ const cardInit = [
   { title: "Ging Freeccs", avatar: gingFreeccs, id: uniqid(), selected: false },
   { title: "SpongeBob", avatar: spongeBob, id: uniqid(), selected: false },
   { title: "Levi", avatar: levi, id: uniqid(), selected: false },
-  { title: "fighterGirl", avatar: fighterGirl, id: uniqid(), selected: false },
+  { title: "Jenny", avatar: fighterGirl, id: uniqid(), selected: false },
 ];
 
 function getRandom(arr, n = arr.length) {
@@ -106,7 +106,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App bg-gray-800">
       <Header score={score} bestScore={bestScore} />
       <Cards cards={cards} makeSelected={makeSelected} />
     </div>
