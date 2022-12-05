@@ -10,7 +10,7 @@ const Header = ({ score, bestScore, max }) => {
         </h1>
         <a
           className="hidden"
-          href="https://github.com/complexlity"
+          href="https://github.com/Complexlity/memory-game"
           target={"_blank"}
         >
           <img className="ml-4 w-[2rem]" src={logo} alt="" />
