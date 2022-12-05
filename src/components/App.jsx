@@ -29,7 +29,7 @@ const cardInit = [
   { title: "fighterGirl", avatar: fighterGirl, id: uniqid(), selected: false },
 ];
 
-function getRandom(arr, n) {
+function getRandom(arr, n = arr.length) {
   var result = new Array(n),
     len = arr.length,
     taken = new Array(len);
@@ -44,24 +44,46 @@ function getRandom(arr, n) {
 }
 
 function App() {
-  const [cards, setCards] = useState(cardInit);
-  const [shownCards, setShownCards] = useState(cardInit);
+  const [cards, setCards] = useState([...cardInit]);
 
   function makeSelected(id) {
-    let tempCards = [...shownCards];
-    tempCards = tempCards.map((card) => {
-      if (card.id === id) card.selected = true;
+    let myCards = [...cards];
+    let result = selectId(myCards, id);
+    let [allCards, clicked] = result;
+    if (!clicked) {
+      allCards = getRandom(allCards);
+      setCards(allCards);
+    } else {
+      alert("Game Over. Restarting...");
+      resetToDefault();
+    }
+  }
+
+  function selectId(arr, id) {
+    let lost = false;
+    for (let item of arr) {
+      if (item.id == id) {
+        if (item.selected) lost = true;
+        item.selected = true;
+      }
+    }
+    return [arr, lost];
+  }
+
+  function resetToDefault() {
+    let newCard = cardInit.map((card) => {
+      card.id = uniqid();
+      card.selected = false;
       return card;
     });
-    tempCards = getRandom(tempCards, tempCards.length);
-    setShownCards(tempCards);
+    setCards(getRandom(newCard));
   }
 
   return (
     <div className="App">
       <Header />
       <Scoreboard />
-      <Cards cards={shownCards} makeSelected={makeSelected} />
+      <Cards cards={cards} makeSelected={makeSelected} />
     </div>
   );
 }
