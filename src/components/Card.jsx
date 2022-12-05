@@ -1,11 +1,21 @@
+const Card = ({ id, title, avatar, makeSelected }) => {
+  return (
+    <div
+      className="card-grid bottom grid h-[16rem]  w-[14rem] overflow-hidden rounded-t-3xl rounded-b-2xl bg-red-400 p-2"
+      onClick={makeSelected.bind(this, id)}
+    >
+      <div className="overflow-hidden rounded-2xl">
+        <img
+          className="h-[12rem] w-full  object-cover object-top"
+          src={avatar}
+          alt="fighter"
+        />
+      </div>
+      <p className="grid items-center text-center text-2xl font-semibold text-white">
+        <span>{title}</span>
+      </p>
+    </div>
+  );
+};
 
-const Card = ({title, avatar}) => {
-    return ( 
-        <div className="card-grid w-[14rem] h-[16rem] grid  bg-red-400 p-2 rounded-t-3xl rounded-b-2xl overflow-hidden bottom">
-            <div className='rounded-2xl overflow-hidden'><img className="object-top object-cover  h-[12rem] w-full" src={avatar} alt="fighter" /></div>
-            <p className='text-center text-white font-semibold text-2xl grid items-center'><span>{title}</span></p>
-        </div>
-     );
-}
- 
 export default Card;

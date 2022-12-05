@@ -1,26 +1,19 @@
-import Card from './Card';
-import naruto from '../assets/naruto.jpg'
-import aang from '../assets/aang.jpg'
-import alita from '../assets/alita.jpg'
-import benTen from '../assets/ben10.jpg'
-import dLuff from '../assets/d-luff.jpg'
-import optimusPrime from '../assets/optimus-prime.jpg'
-import woody from '../assets/woody.jpg'
-import fighterGirl from '../assets/fighter-girl.jpg'
+import Card from "./Card";
 
-const Cards = () => {
-    return ( 
-        <div className="grid layout-grid gap-4 p-4">
-            <Card title='Naruto' avatar={naruto} />
-            <Card title='Aang' avatar={aang}/>
-            <Card title='Alita' avatar={alita}/>
-            <Card title='Ben 10' avatar={benTen}/>
-            <Card title='D Luffy' avatar={dLuff}/>
-            <Card title='Optimus Prime' avatar={optimusPrime}/>
-            <Card title='Woody' avatar={woody}/>
-            <Card title='fighterGirl' avatar={fighterGirl}/>
-        </div>
-     );
-}
- 
+const Cards = ({ cards, makeSelected }) => {
+  return (
+    <div className="layout-grid grid justify-center justify-items-center gap-4 p-4">
+      {cards.map((card) => (
+        <Card
+          key={card.id}
+          id={card.id}
+          title={card.title}
+          avatar={card.avatar}
+          makeSelected={makeSelected}
+        />
+      ))}
+    </div>
+  );
+};
+
 export default Cards;
