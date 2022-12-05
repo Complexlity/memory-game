@@ -81,7 +81,7 @@ function App() {
         resetToDefault();
       }
     } else {
-      alert("Game Over. Restarting...");
+      alert("Tough Luck. Try Again...");
       resetToDefault();
     }
   }
