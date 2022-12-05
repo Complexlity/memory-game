@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 .layout-grid {
   grid-template-columns: repeat(auto-fit, 250px);
 }
@@ -14,11 +14,6 @@
 @font-face {
   font-family: charText;
   src: url("./assets/RoyalFighter-2O7JW.ttf");
-}
-
-@font-face {
-  font-family: headerFont;
-  src: url("./assets/MerriweatherSans-VariableFont_wght.ttf");
 }
 
 .main-header {
