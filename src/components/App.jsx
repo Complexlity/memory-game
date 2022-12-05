@@ -12,7 +12,11 @@ import dLuff from "../assets/d-luff.jpg";
 import optimusPrime from "../assets/optimus-prime.jpg";
 import woody from "../assets/woody.jpg";
 import fighterGirl from "../assets/fighter-girl.jpg";
-import { useState } from "react";
+import gojoSatoru from "../assets/gojo-satoru.jpg";
+import gingFreeccs from "../assets/ging.jpg";
+import spongeBob from "../assets/spongebob.jpg";
+import levi from "../assets/levi.jpg";
+import { useEffect, useState } from "react";
 
 const cardInit = [
   { title: "Naruto", avatar: naruto, id: uniqid(), selected: false },
@@ -27,6 +31,10 @@ const cardInit = [
     selected: false,
   },
   { title: "Woody", avatar: woody, id: uniqid(), selected: false },
+  { title: "Gojo Satoru", avatar: gojoSatoru, id: uniqid(), selected: false },
+  { title: "Ging Freeccs", avatar: gingFreeccs, id: uniqid(), selected: false },
+  { title: "SpongeBob", avatar: spongeBob, id: uniqid(), selected: false },
+  { title: "Levi", avatar: levi, id: uniqid(), selected: false },
   { title: "fighterGirl", avatar: fighterGirl, id: uniqid(), selected: false },
 ];
 
@@ -48,6 +56,11 @@ function App() {
   const [cards, setCards] = useState([...cardInit]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+
+  useEffect(() => {
+    let yourScore = localStorage.getItem("MemoryScore");
+    if (yourScore) setBestScore(yourScore);
+  }, []);
 
   function makeSelected(id) {
     let myCards = [...cards];
@@ -82,13 +95,19 @@ function App() {
     });
     setCards(getRandom(newCard));
     setScore(0);
-    if (score > bestScore) setBestScore(score);
+    if (score > bestScore) {
+      setBestScore(score);
+      writeToLocalStorage(score);
+    }
+  }
+
+  function writeToLocalStorage(value) {
+    localStorage.setItem("MemoryScore", value);
   }
 
   return (
     <div className="App">
-      <Header />
-      <Scoreboard score={score} bestScore={bestScore} />
+      <Header score={score} bestScore={bestScore} />
       <Cards cards={cards} makeSelected={makeSelected} />
     </div>
   );
