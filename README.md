@@ -6,7 +6,7 @@
 <a href="https://tailwindcss.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png" alt="drawing" width="40"/></a>
 <a href="https://www.framer.com/"><img src="https://reactjsexample.com/content/images/2020/04/motion.png" alt="drawing" width="40"/></a>
 
-[Live Preview](https://complexlity-resume-builder.netlify.app/)
+[Live Preview](https://complexlity-memory-game.netlify.app/)
 
 ## Coming soon...
 - Multiple Levels (Easy to Hard)
