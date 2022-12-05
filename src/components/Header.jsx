@@ -3,7 +3,7 @@ import Scoreboard from "./Scoreboard";
 
 const Header = ({ score, bestScore }) => {
   return (
-    <div className="flex items-center gap-4 bg-green-400 py-4 px-4 py-2 ">
+    <div className="flex items-center gap-4 py-4 px-4 ">
       <div className="flex w-full flex-1 sm:w-auto">
         <h1 className="w-full text-center text-2xl md:text-4xl ">
           Anime Memory Game
