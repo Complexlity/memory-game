@@ -46,6 +46,8 @@ function getRandom(arr, n = arr.length) {
 
 function App() {
   const [cards, setCards] = useState([...cardInit]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
   function makeSelected(id) {
     let myCards = [...cards];
@@ -54,6 +56,7 @@ function App() {
     if (!clicked) {
       allCards = getRandom(allCards);
       setCards(allCards);
+      setScore(score + 1);
     } else {
       alert("Game Over. Restarting...");
       resetToDefault();
@@ -78,12 +81,14 @@ function App() {
       return card;
     });
     setCards(getRandom(newCard));
+    setScore(0);
+    if (score > bestScore) setBestScore(score);
   }
 
   return (
     <div className="App">
       <Header />
-      <Scoreboard />
+      <Scoreboard score={score} bestScore={bestScore} />
       <Cards cards={cards} makeSelected={makeSelected} />
     </div>
   );
