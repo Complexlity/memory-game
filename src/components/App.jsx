@@ -55,7 +55,7 @@ function getRandom(arr, n = arr.length) {
 
 function App() {
   const [cards, setCards] = useState([...cardInit]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(10);
   const [bestScore, setBestScore] = useState(0);
   const [max, setMax] = useState(false);
 
@@ -77,9 +77,9 @@ function App() {
       setScore(score + 1);
       if (value === 11) {
         localStorage.setItem("Max", true);
-        localStorage.setItem("MemoryScore", score + 1);
+        localStorage.setItem("MemoryScore", 12);
         setMax(true);
-        setBestScore(score + 1);
+        setBestScore(score);
         alert("You Attained god hood. Congratulations");
         resetToDefault();
       }
