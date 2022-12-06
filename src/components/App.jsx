@@ -76,9 +76,10 @@ function App() {
       let value = score;
       setScore(score + 1);
       if (value === 11) {
+        localStorage.setItem("Max", true);
+        localStorage.setItem("MemoryScore", score + 1);
         setMax(true);
         setBestScore(score + 1);
-        localStorage.setItem("Max", true);
         alert("You Attained god hood. Congratulations");
         resetToDefault();
       }
