@@ -77,7 +77,7 @@ function App() {
       setScore(score + 1);
       if (value === 11) {
         setMax(true);
-        setBestScore(score);
+        setBestScore(score + 1);
         localStorage.setItem("Max", true);
         alert("You Attained god hood. Congratulations");
         resetToDefault();
