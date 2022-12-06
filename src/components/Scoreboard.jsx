@@ -6,7 +6,7 @@ const Scoreboard = ({ score, bestScore, max }) => {
       </span>
       <span className="pl-2">
         Best Score: {bestScore}
-        {max && "(Max)"}
+        {max && " (Max)"}
       </span>
     </div>
   );

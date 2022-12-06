@@ -17,7 +17,7 @@ const Header = ({ score, bestScore, max }) => {
         </a>
       </div>
       <div className="m-auto flex items-center justify-center gap-4">
-        <Scoreboard score={score} bestScore={bestScore} />
+        <Scoreboard score={score} bestScore={bestScore} max={max} />
         <a href="https://github.com/complexlity" target={"_blank"}>
           <img className="w-[2rem]" src={logo} alt="" />
         </a>

@@ -55,7 +55,7 @@ function getRandom(arr, n = arr.length) {
 
 function App() {
   const [cards, setCards] = useState([...cardInit]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(10);
   const [bestScore, setBestScore] = useState(0);
   const [max, setMax] = useState(false);
 
@@ -116,7 +116,7 @@ function App() {
   return (
     <div className="App bg-gray-800">
       <Header score={score} bestScore={bestScore} max={max} />
-      <MobileHeader score={score} bestScore={bestScore} />
+      <MobileHeader score={score} bestScore={bestScore} max={max} />
       <Cards cards={cards} makeSelected={makeSelected} />
     </div>
   );

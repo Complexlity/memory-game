@@ -1,7 +1,7 @@
 import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
 
-const MobileHeader = ({ score, bestScore }) => {
+const MobileHeader = ({ score, bestScore, max }) => {
   return (
     <div className="mb-4 pt-4 sm:hidden">
       <div className="mb-4 flex items-center gap-2 px-6">
@@ -12,7 +12,7 @@ const MobileHeader = ({ score, bestScore }) => {
           <img className="w-[2.5rem]" src={logo} alt="" />
         </a>
       </div>
-      <Scoreboard score={score} bestScore={bestScore} />
+      <Scoreboard score={score} bestScore={bestScore} max={max} />
     </div>
   );
 };
