@@ -73,8 +73,9 @@ function App() {
     if (!clicked) {
       allCards = getRandom(allCards);
       setCards(allCards);
+      let value = score;
       setScore(score + 1);
-      if (score === 12) {
+      if (value === 11) {
         setMax(true);
         setBestScore(score);
         localStorage.setItem("Max", true);
