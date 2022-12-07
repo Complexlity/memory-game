@@ -1,7 +1,5 @@
-import { motion } from "framer-motion";
 import Cards from "./Cards";
 import Header from "./Header";
-import Scoreboard from "./Scoreboard";
 import "../index.css";
 import uniqid from "uniqid";
 import naruto from "../assets/naruto.jpg";
@@ -55,7 +53,7 @@ function getRandom(arr, n = arr.length) {
 
 function App() {
   const [cards, setCards] = useState([...cardInit]);
-  const [score, setScore] = useState(10);
+  const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [max, setMax] = useState(false);
 
@@ -81,7 +79,7 @@ function App() {
         setMax(true);
         setBestScore(score);
         alert("You Attained god hood. Congratulations");
-        resetToDefault();
+        resetToDefault(value);
       }
     } else {
       alert("Tough Luck. Try Again...");
@@ -100,7 +98,7 @@ function App() {
     return [arr, lost];
   }
 
-  function resetToDefault() {
+  function resetToDefault(value = false) {
     let newCard = cardInit.map((card) => {
       card.id = uniqid();
       card.selected = false;
@@ -111,6 +109,10 @@ function App() {
     if (score > bestScore) {
       setBestScore(score);
       localStorage.setItem("MemoryScore", score);
+    }
+    if (value) {
+      setBestScore(12);
+      localStorage.setItem("MemoryScore", 12);
     }
   }
 
