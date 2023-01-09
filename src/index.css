@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,11 +13,6 @@
   src: url("./assets/ConsertaDemoRegular-2znv.ttf");
 }
 
-@font-face {
-  font-family: charText;
-  src: url("./assets/RoyalFighter-2O7JW.ttf");
-}
-
 .main-header {
   font-family: "Permanent Marker", cursive;
 }
@@ -25,7 +22,7 @@
 }
 
 .names {
-  font-family: charText;
+  font-family: "Raleway", sans-serif;
 }
 .card-grid {
   grid-template-rows: max-content 1fr;

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Card = ({ id, title, avatar, makeSelected }) => {
