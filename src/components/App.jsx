@@ -16,6 +16,7 @@ import spongeBob from "../assets/spongebob.jpg";
 import levi from "../assets/levi.jpg";
 import { useEffect, useState } from "react";
 import MobileHeader from "./MobileHeader";
+import SignUp from "./SignUp";
 
 const cardInit = [
   { title: "Naruto", avatar: naruto, id: uniqid(), selected: false },
@@ -118,9 +119,10 @@ function App() {
 
   return (
     <div className="App bg-gray-800">
-      <Header score={score} bestScore={bestScore} max={max} />
+      <SignUp />
+      {/* <Header score={score} bestScore={bestScore} max={max} />
       <MobileHeader score={score} bestScore={bestScore} max={max} />
-      <Cards cards={cards} makeSelected={makeSelected} />
+      <Cards cards={cards} makeSelected={makeSelected} /> */}
     </div>
   );
 }
