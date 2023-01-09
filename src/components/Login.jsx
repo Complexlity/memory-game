@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import useAuth from "../hooks/useAuth";
 
-const SignUp = () => {
+const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -9,7 +9,7 @@ const SignUp = () => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    useAuth(email, password, false);
+    useAuth(email, password);
     emailRef.current.value = "";
     passwordRef.current.value = "";
   }
@@ -33,10 +33,10 @@ const SignUp = () => {
         placeholder="password"
       />
       <button className=" mx-auto w-2/5 max-w-[40rem] rounded-full bg-blue-300 py-4">
-        Submit
+        LOGIN
       </button>
     </form>
   );
 };
 
-export default SignUp;
+export default Login;

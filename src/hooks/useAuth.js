@@ -1,13 +1,15 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase.config";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
-export default async function useAuth(email, password) {
+export default async function useAuth(email, password, signIn = true) {
+  let triggerFunction = signIn
+    ? signInWithEmailAndPassword
+    : createUserWithEmailAndPassword;
   try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    const userCredential = await triggerFunction(auth, email, password);
     const user = await userCredential.user;
     console.log(user);
   } catch (error) {
