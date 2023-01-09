@@ -1,15 +1,17 @@
 import { useRef } from "react";
+import useAuth from "../hooks/useAuth";
 
 const SignUp = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
+
   function submitForm(e) {
     e.preventDefault();
-    const newObject = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-    console.log(newObject);
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    useAuth(email, password);
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
   }
   const inputStyles = "px-4 py-4 mb-4";
   return (
