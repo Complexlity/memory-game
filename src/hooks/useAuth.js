@@ -10,7 +10,7 @@ export default async function useAuth(email, password, signIn = true) {
     : createUserWithEmailAndPassword;
   try {
     const userCredential = await triggerFunction(auth, email, password);
-    const user = await userCredential.user;
+    const user = userCredential.user;
     console.log(user);
   } catch (error) {
     const errorCode = error.code;

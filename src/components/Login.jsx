@@ -33,7 +33,7 @@ const Login = () => {
         placeholder="password"
       />
       <button className=" mx-auto w-2/5 max-w-[40rem] rounded-full bg-blue-300 py-4">
-        LOGIN
+        Login
       </button>
     </form>
   );
