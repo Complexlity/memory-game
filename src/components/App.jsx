@@ -64,7 +64,9 @@ function App() {
   const [userData, setUserData] = useState(false);
 
   function resetAll() {
-    console.log("hello");
+    alert("Are you sure you want remove all data");
+    setUserData(false);
+    resetToDefault("min");
   }
 
   useEffect(() => {
@@ -89,7 +91,7 @@ function App() {
         setMax(true);
         setBestScore(score);
         alert("You Attained god hood. Congratulations");
-        resetToDefault(value);
+        resetToDefault("max");
       }
     } else {
       alert("Tough Luck. Try Again...");
@@ -127,9 +129,11 @@ function App() {
       }
       localStorage.setItem("MemoryScore", score);
     }
-    if (value) {
+    if (value == "max") {
       setBestScore(12);
-      localStorage.setItem("MemoryScore", 12);
+    } else if (value == "min") {
+      setBestScore(0);
+      localStorage.setItem("MemoryScore", 0);
     }
   }
 

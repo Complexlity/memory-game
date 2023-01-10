@@ -51,7 +51,10 @@ const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
             >
               {userData.displayName}
             </Button>
-            <span className="absolute top-[100%] left-[20%] right-0 hidden group-hover:inline">
+            <span
+              onClick={resetAll}
+              className="absolute top-[100%] right-0 hidden w-full group-hover:inline"
+            >
               <Button
                 className="w-full text-white"
                 variant="outlined"
