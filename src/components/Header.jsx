@@ -1,7 +1,7 @@
 import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
 
-const Header = ({ score, bestScore, max }) => {
+const Header = ({ score, bestScore, max, setLogin }) => {
   return (
     <div className="hidden items-center gap-4 py-4 px-4 sm:flex">
       <div className="flex w-full flex-1 sm:w-auto">
@@ -21,7 +21,12 @@ const Header = ({ score, bestScore, max }) => {
         <a href="https://github.com/complexlity" target={"_blank"}>
           <img className="w-[2rem]" src={logo} alt="" />
         </a>
-        <button className="rounded-xl bg-orange-400 px-4 py-2">LOGIN</button>
+        <button
+          onClick={setLogin.bind(this, true)}
+          className="rounded-xl bg-orange-400 px-4 py-2"
+        >
+          LOGIN
+        </button>
       </div>
     </div>
   );

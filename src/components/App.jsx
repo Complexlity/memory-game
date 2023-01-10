@@ -58,6 +58,8 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [max, setMax] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [signUp, setSignUp] = useState(false);
 
   useEffect(() => {
     let yourScore = localStorage.getItem("MemoryScore");
@@ -118,13 +120,20 @@ function App() {
     }
   }
 
+  document.body.style.overflow = login || signUp ? "hidden" : "auto";
+
   return (
-    <div className="App bg-gray-800">
-      <Header score={score} bestScore={bestScore} max={max} />
+    <div className={`App bg-gray-800`}>
+      <Header
+        score={score}
+        bestScore={bestScore}
+        max={max}
+        setLogin={setLogin}
+      />
       <MobileHeader score={score} bestScore={bestScore} max={max} />
       <Cards cards={cards} makeSelected={makeSelected} />
-      {/* <SignUp /> */}
-      <Login />
+      {signUp && <SignUp setLogin={setLogin} setSignUp={setSignUp} />}
+      {login && <Login setLogin={setLogin} setSignUp={setSignUp} />}
     </div>
   );
 }

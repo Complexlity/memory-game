@@ -52,8 +52,6 @@ import { db } from "../../firebase.config.js";
 //     </div>
 //   );
 // };
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
@@ -65,12 +63,10 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 
-const Login = () => {
+const Login = ({ setLogin, setSignUp }) => {
   const emptyValues = {
-    displayName: "",
     email: "",
     password: "",
-    confirmPassword: "",
   };
   const [values, setValues] = useState(emptyValues);
   const [showPassword, setShowPassword] = useState(false);
@@ -84,26 +80,15 @@ const Login = () => {
 
   function validateInputs() {
     const result = { success: false, message: "", field: "" };
-    const { displayName, email, password, confirmPassword } = values;
-    if (!displayName) {
-      result.message = "Display Name cannot be blank";
-      result.field = "name";
-      return result;
-    } else if (!email) {
+    const { email, password } = values;
+
+    if (!email) {
       result.message = "Email Value Missing";
       result.field = "email";
       return result;
     } else if (!password) {
       result.message = "Password Missing";
       result.field = "password";
-      return result;
-    } else if (password.length < 6) {
-      result.message = "Password to must be >5 characters";
-      result.field = "password";
-      return result;
-    } else if (confirmPassword != password) {
-      result.message = "Passwords do not match";
-      result.field = "confirmPassword";
       return result;
     } else {
       result.success = true;
@@ -124,27 +109,25 @@ const Login = () => {
   }
 
   return (
-    <div className="overlayScreen  absolute inset-0 grid content-center items-center justify-center  bg-white">
+    <div
+      onClick={() => {
+        setLogin(false);
+        setSignUp(false);
+      }}
+      className="overlayScreen absolute  inset-0 grid content-center items-center justify-center bg-white  opacity-95"
+    >
       <form
+        onClick={(e) => e.stopPropagation()}
         action=""
         className="grid w-full max-w-[80rem] gap-4 rounded-xl bg-white p-8"
       >
-        <h1 className="text-center">Login To Save Your Data</h1>
+        <h1 className="text-center">LOAD YOUR BEST SCORE</h1>
         {error.value && (
           <div className="rounded-md bg-red-100 py-4 text-center text-red-700">
             {error.message}
           </div>
         )}
-        <TextField
-          required
-          error={error.field == "name"}
-          id="outlined-required"
-          label="Display Name"
-          value={values.displayName}
-          onChange={(e) =>
-            setValues({ ...values, displayName: e.target.value })
-          }
-        />
+
         <TextField
           error={error.field == "email"}
           required
@@ -178,32 +161,7 @@ const Login = () => {
             label="Password"
           />
         </FormControl>
-        <FormControl variant="outlined" required>
-          <InputLabel htmlFor="outlined-adornment-password">
-            Confirm Password
-          </InputLabel>
-          <OutlinedInput
-            error={error.field == "confirmPassword"}
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            onChange={(e) =>
-              setValues({ ...values, confirmPassword: e.target.value })
-            }
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
+
         <Button
           onClick={handleSubmit}
           type="submit"
@@ -213,6 +171,18 @@ const Login = () => {
         >
           Login
         </Button>
+        <p className="text-center italic">
+          Don't have an account?{" "}
+          <span
+            onClick={() => {
+              setLogin(false);
+              setSignUp(true);
+            }}
+            className="non-italic cursor-pointer font-bold text-indigo-400 hover:underline"
+          >
+            Sign Up
+          </span>
+        </p>
       </form>
     </div>
   );
