@@ -21,6 +21,7 @@ const Header = ({ score, bestScore, max }) => {
         <a href="https://github.com/complexlity" target={"_blank"}>
           <img className="w-[2rem]" src={logo} alt="" />
         </a>
+        <button className="rounded-xl bg-orange-400 px-4 py-2">LOGIN</button>
       </div>
     </div>
   );

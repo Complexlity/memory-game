@@ -120,11 +120,11 @@ function App() {
 
   return (
     <div className="App bg-gray-800">
-      <SignUp />
-      <Login />
-      {/* <Header score={score} bestScore={bestScore} max={max} />
+      <Header score={score} bestScore={bestScore} max={max} />
       <MobileHeader score={score} bestScore={bestScore} max={max} />
-      <Cards cards={cards} makeSelected={makeSelected} /> */}
+      <Cards cards={cards} makeSelected={makeSelected} />
+      {/* <SignUp /> */}
+      <Login />
     </div>
   );
 }
