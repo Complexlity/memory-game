@@ -38,6 +38,9 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
       result.message = "Display Name cannot be blank";
       result.field = "name";
       return result;
+    } else if (displayName.length > 10) {
+      result.message = "Name Too long (>11 letters)";
+      return reslut;
     } else if (!email) {
       result.message = "Email Value Missing";
       result.field = "email";

@@ -1,10 +1,20 @@
 import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
-import { AiFillCaretDown } from "react-icons/ai";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useRef, useState } from "react";
 
 const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
+  const [logOutButton, setLogOutButton] = useState(false);
+  const buttonRef = useRef();
+  function showLogOut() {
+    if (logOutButton) buttonRef.current.style.display = "none";
+    else buttonRef.current.style.display = "block";
+    setLogOutButton(!logOutButton);
+  }
+  function hideLogOut() {
+    buttonRef.current.style.display = "none";
+  }
   return (
     <div className="hidden items-center gap-4 py-4 px-4 sm:flex">
       <div className="flex w-full flex-1 sm:w-auto">
@@ -24,34 +34,32 @@ const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
         <a href="https://github.com/complexlity" target={"_blank"}>
           <img className="w-[2rem]" src={logo} alt="" />
         </a>
+
         {!userData && (
-          <button
-            onClick={setLogin.bind(this, true)}
-            className="rounded-xl bg-orange-400 px-4 py-2"
-          >
-            LOGIN
-          </button>
+          <span onClick={setLogin.bind(this, true)} className="w-[8rem]">
+            <Button classname="w-full" variant="outlined">
+              Log In
+            </Button>
+          </span>
         )}
+
         {userData && (
-          // <button className="group relative flex cursor-default items-center gap-1 rounded-xl bg-orange-400 px-4 py-2">
-          //   {userData.displayName}
-          //   <AiFillCaretDown />
-          //   <span
-          //     onClick={resetAll}
-          //     className="pointer absolute top-[80%] right-0 hidden w-[80%] rounded-md bg-red-400 py-2 hover:bg-red-700 group-hover:inline"
-          //   >
-          //     Log Out
-          //   </span>
-          // </button>
-          <div className="group relative">
+          <div
+            onClick={showLogOut}
+            onBlur={hideLogOut}
+            className="group relative"
+          >
             <Button
-              className="group w-auto"
+              className="w-auto"
               variant="contained"
               endIcon={<ExpandMoreIcon />}
+              color="success"
             >
               {userData.displayName}
             </Button>
+
             <span
+              ref={buttonRef}
               onClick={resetAll}
               className="absolute top-[100%] right-0 hidden w-full group-hover:inline"
             >

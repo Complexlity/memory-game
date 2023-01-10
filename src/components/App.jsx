@@ -64,7 +64,7 @@ function App() {
   const [userData, setUserData] = useState(false);
 
   function resetAll() {
-    alert("Are you sure you want remove all data");
+    alert("Do you want to continue ?");
     setUserData(false);
     resetToDefault("min");
   }
