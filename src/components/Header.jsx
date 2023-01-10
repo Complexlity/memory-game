@@ -1,6 +1,8 @@
 import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
 import { AiFillCaretDown } from "react-icons/ai";
+import Button from "@mui/material/Button";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
   return (
@@ -31,16 +33,34 @@ const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
           </button>
         )}
         {userData && (
-          <button className="group relative flex cursor-default items-center gap-1 rounded-xl bg-orange-400 px-4 py-2">
-            {userData.displayName}
-            <AiFillCaretDown />
-            <span
-              onClick={resetAll}
-              className="pointer absolute top-[80%] right-0 hidden w-[80%] rounded-md bg-red-400 py-2 hover:bg-red-700 group-hover:inline"
+          // <button className="group relative flex cursor-default items-center gap-1 rounded-xl bg-orange-400 px-4 py-2">
+          //   {userData.displayName}
+          //   <AiFillCaretDown />
+          //   <span
+          //     onClick={resetAll}
+          //     className="pointer absolute top-[80%] right-0 hidden w-[80%] rounded-md bg-red-400 py-2 hover:bg-red-700 group-hover:inline"
+          //   >
+          //     Log Out
+          //   </span>
+          // </button>
+          <div className="group relative">
+            <Button
+              className="group w-auto"
+              variant="contained"
+              endIcon={<ExpandMoreIcon />}
             >
-              Log Out
+              {userData.displayName}
+            </Button>
+            <span className="absolute top-[100%] left-[20%] right-0 hidden group-hover:inline">
+              <Button
+                className="w-full text-white"
+                variant="outlined"
+                color="error"
+              >
+                Log Out
+              </Button>
             </span>
-          </button>
+          </div>
         )}
       </div>
     </div>
