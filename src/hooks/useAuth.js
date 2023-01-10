@@ -32,6 +32,8 @@ function mapAuthCodeToMessage(authCode) {
       return "Wrong password entered";
     case "auth/email-already-exists":
       return "Email already exits";
+    case "auth/network-request-failed":
+      return "Connection Error";
     // Many more authCode mapping here...
 
     default:

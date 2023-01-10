@@ -1,56 +1,6 @@
-import { useRef } from "react";
 import useAuth from "../hooks/useAuth";
 import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase.config.js";
-
-// const SignUp = () => {
-//   const emailRef = useRef();
-//   const passwordRef = useRef();
-
-//   async function submitForm(e) {
-//     e.preventDefault();
-//     const email = emailRef.current.value;
-//     const password = passwordRef.current.value;
-//     const userAuth = await useAuth(email, password, false);
-//     console.log(userAuth);
-//     emailRef.current.value = "";
-//     passwordRef.current.value = "";
-//     if (userAuth.success) {
-//       const userId = userAuth.result.uid;
-//       const docRef = doc(db, "best-scores", userId);
-//       await setDoc(docRef, {
-//         score: 0,
-//         user: userAuth.result.email,
-//       });
-//       console.log("User data added successfully");
-//     }
-//   }
-//   const inputStyles = "px-4 py-4 mb-4";
-//   return (
-//     <form
-//       action=""
-//       className="mx-auto my-24 flex max-w-[70rem] flex-col bg-gray-200 py-4 px-4 px-2 "
-//       onSubmit={submitForm}
-//     >
-//       <input
-//         className={inputStyles}
-//         ref={emailRef}
-//         type="email"
-//         placeholder="email"
-//       />
-//       <input
-//         className={inputStyles}
-//         ref={passwordRef}
-//         type="password"
-//         placeholder="password"
-//       />
-//       <button className=" mx-auto w-2/5 max-w-[40rem] rounded-full bg-blue-300 py-4">
-//         SignUp
-//       </button>
-//     </form>
-//   );
-// };
-
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
@@ -60,6 +10,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
+import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 
 const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
@@ -72,6 +23,7 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
   const [values, setValues] = useState(emptyValues);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({ value: false, message: "", field: "" });
+  const [loading, setLoading] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -111,6 +63,7 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     let result = validateInputs(values);
     const { displayName, email, password } = values;
     if (result.success) {
@@ -123,13 +76,15 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
         const userData = { displayName, score: bestScore };
         await setDoc(docRef, userData);
         setUserData({ ...userData, id: userId });
-        console.log("user added successfully");
+        setSignUp(false);
+        alert(`Thanks ${displayName} for joining us `);
       } else {
         setError({ value: true, message: userAuth.result, field: "" });
       }
     } else {
       setError({ value: true, message: result.message, field: result.field });
     }
+    setLoading(false);
   }
 
   return (
@@ -138,12 +93,12 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
         setLogin(false);
         setSignUp(false);
       }}
-      className="overlayScreen absolute  inset-0 grid content-center items-center justify-center bg-white  opacity-95"
+      className="overlayScreen `  absolute inset-0 grid items-center bg-white  opacity-95"
     >
       <form
         onClick={(e) => e.stopPropagation()}
         action=""
-        className="grid w-full max-w-[80rem] gap-4 rounded-xl bg-white p-8"
+        className="mx-auto grid w-[80%] max-w-[40rem] gap-4 rounded-xl bg-white p-8"
       >
         <h1 className="text-center">SAVE YOUR BEST SCORE</h1>
         {error.value && (
@@ -220,15 +175,19 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
             label="Password"
           />
         </FormControl>
-        <Button
-          onClick={handleSubmit}
-          type="submit"
-          variant="contained"
-          size="large"
-          className="w-full"
-        >
-          Sign Up
-        </Button>
+        <div>
+          <Button
+            onClick={handleSubmit}
+            type="submit"
+            variant="contained"
+            size="large"
+            j
+            className="w-full"
+            disabled={loading}
+          >
+            {loading ? <CircularProgress /> : "Sign UP"}
+          </Button>
+        </div>
         <p className="text-center italic">
           Have an account?{" "}
           <span

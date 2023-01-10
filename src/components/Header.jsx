@@ -21,12 +21,19 @@ const Header = ({ score, bestScore, max, setLogin, userData }) => {
         <a href="https://github.com/complexlity" target={"_blank"}>
           <img className="w-[2rem]" src={logo} alt="" />
         </a>
-        <button
-          onClick={setLogin.bind(this, true)}
-          className="rounded-xl bg-orange-400 px-4 py-2"
-        >
-          {userData ? userData.displayName : "LOGIN"}
-        </button>
+        {!userData && (
+          <button
+            onClick={setLogin.bind(this, true)}
+            className="rounded-xl bg-orange-400 px-4 py-2"
+          >
+            LOGIN
+          </button>
+        )}
+        {userData && (
+          <button className="cursor-default rounded-xl bg-orange-400 px-4 py-2">
+            {userData.displayName}
+          </button>
+        )}
       </div>
     </div>
   );

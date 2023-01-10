@@ -60,7 +60,7 @@ function App() {
   const [max, setMax] = useState(false);
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(false);
 
   useEffect(() => {
     let yourScore = localStorage.getItem("MemoryScore");
@@ -152,7 +152,6 @@ function App() {
           setLogin={setLogin}
           setSignUp={setSignUp}
           setUserData={setUserData}
-          bestScore={bestScore}
           setBestScore={setBestScore}
         />
       )}
