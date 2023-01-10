@@ -11,10 +11,10 @@ export default async function useAuth(email, password, signIn = true) {
   try {
     const userCredential = await triggerFunction(auth, email, password);
     const user = userCredential.user;
-    console.log(user);
+    return { success: true, result: user };
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
-    alert(`${errorCode} \n ${errorMessage}`);
+    return { success: false, result: errorMessage };
   }
 }
