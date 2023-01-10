@@ -18,7 +18,8 @@ import levi from "../assets/levi.jpg";
 import { useEffect, useState } from "react";
 import SignUp from "./SignUp";
 import Login from "./Login";
-
+import { db } from "../../firebase.config.js";
+import { doc, setDoc } from "firebase/firestore";
 const cardInit = [
   { title: "Naruto", avatar: naruto, id: uniqid(), selected: false },
   { title: "Aang", avatar: aang, id: uniqid(), selected: false },
@@ -61,6 +62,10 @@ function App() {
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
   const [userData, setUserData] = useState(false);
+
+  function resetAll() {
+    console.log("hello");
+  }
 
   useEffect(() => {
     let yourScore = localStorage.getItem("MemoryScore");
@@ -113,6 +118,13 @@ function App() {
     setScore(0);
     if (score > bestScore) {
       setBestScore(score);
+      if (userData) {
+        const docRef = doc(db, "best-scores", userData.id);
+        setDoc(docRef, {
+          displayName: userData.displayName,
+          score,
+        });
+      }
       localStorage.setItem("MemoryScore", score);
     }
     if (value) {
@@ -131,6 +143,7 @@ function App() {
         max={max}
         setLogin={setLogin}
         userData={userData}
+        resetAll={resetAll}
       />
       <MobileHeader
         score={score}
