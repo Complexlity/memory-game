@@ -5,13 +5,14 @@ const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    useAuth(email, password);
+    const userAuth = await useAuth(email, password);
     emailRef.current.value = "";
     passwordRef.current.value = "";
+    console.log(userAuth);
   }
   const inputStyles = "px-4 py-4 mb-4";
   return (

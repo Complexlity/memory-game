@@ -1,17 +1,24 @@
 import { useRef } from "react";
 import useAuth from "../hooks/useAuth";
+import { doc, setDoc } from "firebase/firestore";
 
 const SignUp = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    useAuth(email, password, false);
+    const userAuth = await useAuth(email, password, false);
     emailRef.current.value = "";
     passwordRef.current.value = "";
+    if (userAuth.success) {
+      await setDoc(doc(db, "best-scores", userAuth.result.uid), {
+        bestScore: 0,
+      });
+      console.log("User data added successfully");
+    }
   }
   const inputStyles = "px-4 py-4 mb-4";
   return (
