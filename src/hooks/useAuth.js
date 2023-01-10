@@ -13,8 +13,28 @@ export default async function useAuth(email, password, signIn = true) {
     const user = userCredential.user;
     return { success: true, result: user };
   } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    console.log(error.code);
+    const errorMessage = mapAuthCodeToMessage(error.code);
     return { success: false, result: errorMessage };
+  }
+}
+
+function mapAuthCodeToMessage(authCode) {
+  switch (authCode) {
+    case "auth/invalid-password":
+      return "Password provided is not corrected";
+
+    case "auth/invalid-email":
+      return "Email provided is invalid";
+    case "auth/user-not-found":
+      return "Account Not Found";
+    case "auth/wrong-password":
+      return "Wrong password entered";
+    case "auth/email-already-exists":
+      return "Email already exits";
+    // Many more authCode mapping here...
+
+    default:
+      return "";
   }
 }

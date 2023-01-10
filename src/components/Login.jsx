@@ -63,7 +63,13 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 
-const Login = ({ setLogin, setSignUp }) => {
+const Login = ({
+  setLogin,
+  setSignUp,
+  bestScore,
+  setBestScore,
+  setUserData,
+}) => {
   const emptyValues = {
     email: "",
     password: "",
@@ -78,9 +84,8 @@ const Login = ({ setLogin, setSignUp }) => {
     e.preventDefault();
   };
 
-  function validateInputs() {
+  function validateInputs(email, password) {
     const result = { success: false, message: "", field: "" };
-    const { email, password } = values;
 
     if (!email) {
       result.message = "Email Value Missing";
@@ -97,12 +102,24 @@ const Login = ({ setLogin, setSignUp }) => {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
+    const { email, password } = values;
     e.preventDefault();
-    let result = validateInputs();
+    let result = validateInputs(email, password);
     if (result.success) {
-      console.log("I was validated correctly");
       setError({ value: false });
+      const userAuth = await useAuth(email, password);
+      if (userAuth.success) {
+        const docRef = doc(db, "best-scores", userAuth.result.uid);
+        const user = await getDoc(docRef);
+        const userData = user.data();
+        setUserData({ ...userData, id: user.id });
+        setBestScore(userData.score);
+        setLogin(false);
+        alert(`Welcome ${user.data().displayName}`);
+      } else {
+        setError({ value: true, message: userAuth.result, field: "" });
+      }
     } else {
       setError({ value: true, message: result.message, field: result.field });
     }

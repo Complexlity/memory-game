@@ -1,7 +1,7 @@
 import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
 
-const Header = ({ score, bestScore, max, setLogin }) => {
+const Header = ({ score, bestScore, max, setLogin, userData }) => {
   return (
     <div className="hidden items-center gap-4 py-4 px-4 sm:flex">
       <div className="flex w-full flex-1 sm:w-auto">
@@ -25,7 +25,7 @@ const Header = ({ score, bestScore, max, setLogin }) => {
           onClick={setLogin.bind(this, true)}
           className="rounded-xl bg-orange-400 px-4 py-2"
         >
-          LOGIN
+          {userData ? userData.displayName : "LOGIN"}
         </button>
       </div>
     </div>

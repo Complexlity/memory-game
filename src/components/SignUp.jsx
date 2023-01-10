@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import useAuth from "../hooks/useAuth";
-import { doc, setDoc, addDoc, deleteDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase.config.js";
 
 // const SignUp = () => {
@@ -17,7 +17,6 @@ import { db } from "../../firebase.config.js";
 //     passwordRef.current.value = "";
 //     if (userAuth.success) {
 //       const userId = userAuth.result.uid;
-//       // const colRef = collection(db, "best-scores");
 //       const docRef = doc(db, "best-scores", userId);
 //       await setDoc(docRef, {
 //         score: 0,
@@ -63,7 +62,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 
-const SignUp = ({ setLogin, setSignUp }) => {
+const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
   const emptyValues = {
     displayName: "",
     email: "",
@@ -80,7 +79,7 @@ const SignUp = ({ setLogin, setSignUp }) => {
     e.preventDefault();
   };
 
-  function validateInputs() {
+  function validateInputs(values) {
     const result = { success: false, message: "", field: "" };
     const { displayName, email, password, confirmPassword } = values;
     if (!displayName) {
@@ -110,12 +109,24 @@ const SignUp = ({ setLogin, setSignUp }) => {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    let result = validateInputs();
+    let result = validateInputs(values);
+    const { displayName, email, password } = values;
     if (result.success) {
-      console.log("I was validated correctly");
       setError({ value: false });
+      const userAuth = await useAuth(email, password, false);
+      setError({ value: false });
+      if (userAuth.success) {
+        const userId = userAuth.result.uid;
+        const docRef = doc(db, "best-scores", userId);
+        const userData = { displayName, score: bestScore };
+        await setDoc(docRef, userData);
+        setUserData({ ...userData, id: userId });
+        console.log("user added successfully");
+      } else {
+        setError({ value: true, message: userAuth.result, field: "" });
+      }
     } else {
       setError({ value: true, message: result.message, field: result.field });
     }
@@ -129,7 +140,6 @@ const SignUp = ({ setLogin, setSignUp }) => {
       }}
       className="overlayScreen absolute  inset-0 grid content-center items-center justify-center bg-white  opacity-95"
     >
-      '
       <form
         onClick={(e) => e.stopPropagation()}
         action=""
@@ -226,7 +236,7 @@ const SignUp = ({ setLogin, setSignUp }) => {
               setLogin(true);
               setSignUp(false);
             }}
-            className="font-bolder text-indigo-400 hover:underline"
+            className="cursor-pointer font-bold text-indigo-400 hover:underline"
           >
             Login
           </span>
