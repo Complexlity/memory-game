@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import useAuth from "../hooks/useAuth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, addDoc, deleteDoc } from "firebase/firestore";
+import { db } from "../../firebase.config.js";
 
 const SignUp = () => {
   const emailRef = useRef();
@@ -11,11 +12,16 @@ const SignUp = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const userAuth = await useAuth(email, password, false);
+    console.log(userAuth);
     emailRef.current.value = "";
     passwordRef.current.value = "";
     if (userAuth.success) {
-      await setDoc(doc(db, "best-scores", userAuth.result.uid), {
-        bestScore: 0,
+      const userId = userAuth.result.uid;
+      // const colRef = collection(db, "best-scores");
+      const docRef = doc(db, "best-scores", userId);
+      await setDoc(docRef, {
+        score: 0,
+        user: userAuth.result.email,
       });
       console.log("User data added successfully");
     }

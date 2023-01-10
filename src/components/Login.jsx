@@ -1,6 +1,13 @@
 import { useRef } from "react";
 import useAuth from "../hooks/useAuth";
-
+import {
+  collection,
+  getDoc,
+  getDocs,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../../firebase.config.js";
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -10,10 +17,14 @@ const Login = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const userAuth = await useAuth(email, password);
-    emailRef.current.value = "";
-    passwordRef.current.value = "";
     console.log(userAuth);
+    // emailRef.current.value = "";
+    // passwordRef.current.value = "";
+    const docRef = doc(db, "best-scores", userAuth.result.uid);
+    const user = await getDoc(docRef);
+    console.log(user.id, user.data());
   }
+
   const inputStyles = "px-4 py-4 mb-4";
   return (
     <form
