@@ -40,7 +40,7 @@ const MobileHeader = ({
         )}
 
         {userData && (
-          <div onClick={showLogOut} onBlur={hideLogOut} className="relative">
+          <div onClick={showLogOut} className="relative">
             <Button
               className="w-auto"
               variant="contained"
@@ -53,6 +53,7 @@ const MobileHeader = ({
             <span
               ref={buttonRef}
               onClick={resetAll}
+              onBlur={hideLogOut}
               className="absolute top-[100%] right-0 hidden w-full "
             >
               <Button
