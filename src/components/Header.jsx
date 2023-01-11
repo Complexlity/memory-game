@@ -20,7 +20,7 @@ const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
   return (
     <div className="hidden items-center gap-4 py-4 px-4 sm:flex">
       <div className="flex w-full flex-1 sm:w-auto">
-        <h1 className="main-header w-full text-center text-3xl text-gray-200 md:text-4xl lg:text-5xl ">
+        <h1 className="main-header w-full text-center text-3xl text-gray-200 lg:text-5xl ">
           Test Your Memory
         </h1>
       </div>
