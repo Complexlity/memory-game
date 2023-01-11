@@ -27,7 +27,7 @@ function mapAuthCodeToMessage(authCode) {
     case "auth/invalid-email":
       return "Email provided is invalid";
     case "auth/user-not-found":
-      return "Account Not Found. Please Sign Up";
+      return "Account Not Found. Sign Up First";
     case "auth/wrong-password":
       return "Wrong password entered";
     case "auth/email-already-exists":
