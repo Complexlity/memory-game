@@ -2,18 +2,21 @@ import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
   const [logOutButton, setLogOutButton] = useState(false);
   const buttonRef = useRef();
+
   function showLogOut() {
     if (logOutButton) buttonRef.current.style.display = "none";
     else buttonRef.current.style.display = "block";
     setLogOutButton(!logOutButton);
   }
+
   function hideLogOut() {
     buttonRef.current.style.display = "none";
+    setLogOutButton(!logOutButton);
   }
   return (
     <div className="hidden items-center gap-4 py-4 px-4 sm:flex">
@@ -44,11 +47,7 @@ const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
         )}
 
         {userData && (
-          <div
-            onClick={showLogOut}
-            onBlur={hideLogOut}
-            className="group relative"
-          >
+          <div onClick={showLogOut} onBlur={hideLogOut} className="relative">
             <Button
               className="w-auto"
               variant="contained"
@@ -61,7 +60,7 @@ const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
             <span
               ref={buttonRef}
               onClick={resetAll}
-              className="absolute top-[100%] right-0 hidden w-full group-hover:inline"
+              className="absolute top-[100%] right-0 hidden w-full "
             >
               <Button
                 className="w-full text-white"
