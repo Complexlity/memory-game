@@ -126,19 +126,25 @@ function App() {
       card.selected = false;
       return card;
     });
-    setCards(getRandom(newCard));
-    setScore(0);
     if (score > bestScore) {
-      setBestScore(score);
       if (userData) {
-        const docRef = doc(db, "best-scores", userData.id);
-        setDoc(docRef, {
-          displayName: userData.displayName,
-          score,
-        });
+        try {
+          const docRef = doc(db, "best-scores", userData.id);
+          setDoc(docRef, {
+            displayName: userData.displayName,
+            score,
+          });
+          const gameUserData = { ...userData, score };
+          localStorage.setItem("memGameUser", JSON.stringify(gameUserData));
+        } catch (error) {
+          alert("Something Went Wrong. Your Score Is Not Saved");
+        }
       }
+      setBestScore(score);
       localStorage.setItem("MemoryScore", score);
     }
+    setScore(0);
+    setCards(getRandom(newCard));
     if (value == "max") {
       setBestScore(12);
     } else if (value == "min") {
@@ -164,6 +170,8 @@ function App() {
         bestScore={bestScore}
         max={max}
         userData={userData}
+        setLogin={setLogin}
+        resetAll={resetAll}
       />
       <Cards cards={cards} makeSelected={makeSelected} />
       {signUp && (
