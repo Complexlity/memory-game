@@ -37,7 +37,7 @@ const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
 
         {!userData && (
           <span onClick={setLogin.bind(this, true)} className="w-[8rem]">
-            <Button classname="w-full" variant="outlined">
+            <Button className="w-full" variant="outlined">
               Log In
             </Button>
           </span>
