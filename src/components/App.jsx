@@ -64,9 +64,11 @@ function App() {
   const [userData, setUserData] = useState(false);
 
   function resetAll() {
-    alert("Do you want to continue ?");
-    setUserData(false);
-    resetToDefault("min");
+    if (confirm("Do you want to continue ?")) {
+      localStorage.removeItem("memGameUser");
+      setUserData(false);
+      resetToDefault("min");
+    }
   }
 
   useEffect(() => {
