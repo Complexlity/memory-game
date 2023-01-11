@@ -78,9 +78,11 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
         const docRef = doc(db, "best-scores", userId);
         const userData = { displayName, score: bestScore };
         await setDoc(docRef, userData);
-        setUserData({ ...userData, id: userId });
+        const gameUserData = { ...userData, id: userId };
+        setUserData(gameUserData);
         setSignUp(false);
         alert(`Thanks ${displayName} for joining us `);
+        localStorage.setItem("memGameUser", JSON.stringify(gameUserData));
       } else {
         setError({ value: true, message: userAuth.result, field: "" });
       }

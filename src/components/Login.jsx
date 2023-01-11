@@ -12,6 +12,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
 import { useState } from "react";
+import { updateCurrentUser } from "firebase/auth";
 
 const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
   const emptyValues = {
@@ -59,10 +60,12 @@ const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
         const docRef = doc(db, "best-scores", userAuth.result.uid);
         const user = await getDoc(docRef);
         const userData = user.data();
-        setUserData({ ...userData, id: user.id });
-        setBestScore(userData.score);
+        const gameUserData = { ...userData, id: user.id };
+        setUserData(gameUserData);
+        setBestScore(gameUserData.score);
         setLogin(false);
-        alert(`Welcome ${user.data().displayName}`);
+        alert(`Welcome ${gameUserData.displayName}`);
+        localStorage.setItem("memGameUser", JSON.stringify(gameUserData));
       } else {
         setError({ value: true, message: userAuth.result, field: "" });
       }

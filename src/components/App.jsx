@@ -70,10 +70,18 @@ function App() {
   }
 
   useEffect(() => {
-    let yourScore = localStorage.getItem("MemoryScore");
-    let maxScore = localStorage.getItem("Max");
-    if (yourScore) setBestScore(yourScore);
-    if (maxScore) setMax(true);
+    let memGameUserData = localStorage.getItem("memGameUser");
+    if (memGameUserData) {
+      memGameUserData = JSON.parse(memGameUserData);
+      setUserData(memGameUserData);
+      setBestScore(memGameUserData.score);
+      if (memGameUserData.score == 12) setMax(true);
+    } else {
+      let yourScore = localStorage.getItem("MemoryScore");
+      if (yourScore) setBestScore(yourScore);
+      let maxScore = localStorage.getItem("Max");
+      if (maxScore) setMax(true);
+    }
   }, []);
 
   function makeSelected(id) {
