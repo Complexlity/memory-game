@@ -154,7 +154,7 @@ function App() {
     }
   }
 
-  document.body.style.overflow = login || signUp ? "hidden" : "auto";
+  // document.body.style.overflow = login || signUp ? "hidden" : "auto";
 
   return (
     <div className={`App bg-gray-800`}>
@@ -175,7 +175,9 @@ function App() {
         setLogin={setLogin}
         resetAll={resetAll}
       />
-      <Cards cards={cards} makeSelected={makeSelected} />
+      {!(signUp || login) && (
+        <Cards cards={cards} makeSelected={makeSelected} />
+      )}
       {signUp && (
         <SignUp
           setLogin={setLogin}
