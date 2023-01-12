@@ -35,7 +35,6 @@ function mapAuthCodeToMessage(authCode) {
       return "Connection Error";
     case "auth/email-already-in-use":
       return "Email aready taken";
-    // Many more authCode mapping here...
 
     default:
       return "";
