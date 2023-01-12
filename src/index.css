@@ -36,3 +36,33 @@
 .card-grid:hover {
   scale: 108.5% !important;
 }
+
+.demo4 {
+  text-align: center;
+  overflow: hidden;
+  font-family: Raleway, sans-serif;
+}
+.demo4 span {
+  position: relative;
+}
+
+.demo4 span:before,
+.demo4 span:after {
+  content: "";
+  width: 200px;
+  height: 15px;
+  border-top: 2px solid #2196f3;
+  border-bottom: 2px solid #2196f3;
+  position: absolute;
+  top: 50%;
+  margin-top: -5px;
+}
+
+.demo4 span:before {
+  right: 100%;
+  margin-right: 20px;
+}
+.demo4 span:after {
+  left: 100%;
+  margin-left: 20px;
+}

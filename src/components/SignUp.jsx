@@ -113,7 +113,9 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
         action=""
         className="mx-auto grid w-[80%] max-w-[40rem] gap-4 rounded-xl bg-white p-8"
       >
-        <h1 className="text-center">SAVE YOUR BEST SCORE</h1>
+        <h1 class="demo4 text-xl font-semibold">
+          <span>SIGN UP TO SAVE BEST SCORE</span>
+        </h1>
         {error.value && (
           <div className="rounded-md bg-red-100 py-4 text-center text-red-700">
             {error.message}
