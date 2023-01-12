@@ -91,12 +91,11 @@ const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
         />
       </div>
       <form
-        onClick={(e) => e.stopPropagation()}
         action=""
         className="mx-auto grid w-[80%] max-w-[40rem] gap-4 rounded-xl bg-white p-8"
       >
         {" "}
-        <h1 className="demo4 text-xl font-semibold">
+        <h1 className="demo4 text-base font-semibold sm:text-xl">
           <span>LOG IN TO LOAD BEST SCORE</span>
         </h1>
         {error.value && (

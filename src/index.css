@@ -66,3 +66,10 @@
   left: 100%;
   margin-left: 20px;
 }
+
+@media (max-width: 480px) {
+  .demo4 span:before,
+  .demo4 span:after {
+    display: none;
+  }
+}
