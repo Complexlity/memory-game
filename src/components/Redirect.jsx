@@ -5,7 +5,7 @@ const Redirect = () => {
     <div className="flex flex-col justify-center gap-2 bg-zinc-900 py-3 text-center font-mono text-sm sm:flex-row sm:text-lg">
       <p className="text-white">Back to main site</p>
       <p className=" text-yellow-400">
-        <span>{"->"}</span>
+        <span>{"-> "}</span>
         <a
           href="https://complexlity-memory-game.netlify.app"
           className="cursor-pointer text-blue-400 hover:underline"

@@ -12,7 +12,6 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
 import { useState } from "react";
-import { updateCurrentUser } from "firebase/auth";
 
 const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
   const emptyValues = {

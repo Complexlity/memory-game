@@ -27,13 +27,13 @@ const MobileHeader = ({
   return (
     <div className="mb-4 pt-4 sm:hidden">
       <div className="mb-4 flex items-center gap-2 px-6">
-        <h1 className="main-header flex-1 text-center text-xl text-gray-200">
+        <h1 className="main-header flex-1 text-center text-[1.2rem] text-gray-200">
           Test Your Memory
         </h1>
 
         {!userData && (
-          <span onClick={setLogin.bind(this, true)} className="w-[8rem]">
-            <Button className="w-full" variant="outlined">
+          <span onClick={setLogin.bind(this, true)} className="w-auto">
+            <Button className="w-auto" variant="outlined">
               Log In
             </Button>
           </span>
