@@ -11,6 +11,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";
 
 const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
@@ -75,13 +76,20 @@ const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
   }
 
   return (
-    <div
-      onClick={() => {
-        setLogin(false);
-        setSignUp(false);
-      }}
-      className="overlayScreen `  absolute inset-0 grid items-center bg-white  opacity-95"
-    >
+    <div className="overlayScreen `  absolute inset-0 grid items-center bg-white  opacity-95">
+      <div
+        onClick={() => {
+          setLogin(false);
+          setSignUp(false);
+        }}
+        className="absolute right-0 top-0 "
+      >
+        <CancelIcon
+          className="mx-4 my-4 cursor-pointer"
+          color="error"
+          fontSize="large"
+        />
+      </div>
       <form
         onClick={(e) => e.stopPropagation()}
         action=""
