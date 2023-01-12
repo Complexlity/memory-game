@@ -20,6 +20,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import { db } from "../../firebase.config.js";
 import { doc, setDoc } from "firebase/firestore";
+import Redirect from "./Redirect";
 const cardInit = [
   { title: "Naruto", avatar: naruto, id: uniqid(), selected: false },
   { title: "Aang", avatar: aang, id: uniqid(), selected: false },
@@ -157,6 +158,7 @@ function App() {
 
   return (
     <div className={`App bg-gray-800`}>
+      <Redirect />
       <Header
         score={score}
         bestScore={bestScore}
