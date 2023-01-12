@@ -154,8 +154,6 @@ function App() {
     }
   }
 
-  // document.body.style.overflow = login || signUp ? "hidden" : "auto";
-
   return (
     <div className={`App bg-gray-800`}>
       <Redirect />
