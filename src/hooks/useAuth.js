@@ -13,7 +13,6 @@ export default async function useAuth(email, password, signIn = true) {
     const user = userCredential.user;
     return { success: true, result: user };
   } catch (error) {
-    console.log(error.code);
     const errorMessage = mapAuthCodeToMessage(error.code);
     return { success: false, result: errorMessage };
   }
@@ -34,6 +33,8 @@ function mapAuthCodeToMessage(authCode) {
       return "Email already exits";
     case "auth/network-request-failed":
       return "Connection Error";
+    case "auth/email-already-in-use":
+      return "Email aready taken";
     // Many more authCode mapping here...
 
     default:
