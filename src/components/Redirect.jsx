@@ -6,7 +6,10 @@ const Redirect = () => {
       <p className="text-white">Back to main site</p>
       <p className=" text-yellow-400">
         <ArrowForwardIcon />{" "}
-        <a className="cursor-pointer text-blue-400 hover:underline">
+        <a
+          href="https://complexlity-memory-game.netlify.app"
+          className="cursor-pointer text-blue-400 hover:underline"
+        >
           memorygame.com
         </a>
       </p>
