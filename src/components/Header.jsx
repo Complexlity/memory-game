@@ -1,6 +1,7 @@
 import logo from "../assets/github-light.png";
 import Scoreboard from "./Scoreboard";
 
+// This takes in the present score, best score as well as whether the maximum attainable score has been reached. Note: Those values are further passed down to the 'Scoreboard' components. See Scoreboard.jsx for more information
 const Header = ({ score, bestScore, max }) => {
   return (
     <div className="hidden items-center gap-4 py-4 px-4 sm:flex">

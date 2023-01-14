@@ -1,3 +1,4 @@
+// This component is used in both the MobileHeader and Header compnent. It takes in the scores and renders it nicely at the top of the page
 const Scoreboard = ({ score, bestScore, max }) => {
   return (
     <div className="scoring mx-auto flex w-4/5 justify-evenly rounded-xl bg-indigo-700 px-2 pt-1 pb-0 text-white sm:w-full sm:justify-center md:text-3xl">
