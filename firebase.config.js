@@ -1,12 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+/*This is used in vite build applications to get environmental variables. See https://vitejs.dev/guide/env-and-mode.html*/
 const ENV = import.meta.env;
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -19,9 +20,13 @@ const firebaseConfig = {
   measurementId: ENV.MEASUREMENT_ID,
 };
 
+// Initializes the application
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+// Initializes the authentication system used by your application on firebase
 const auth = getAuth(app);
+
+// Initializes the cloud firestore used by your application on the firebase
 const db = getFirestore(app);
 
-export { app, analytics, auth, db };
+export { app, auth, db };

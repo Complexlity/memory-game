@@ -1,6 +1,16 @@
-import useAuth from "../hooks/useAuth";
+import { useState } from "react";
+
+/* -----------------------
+Firebase/Authentication functions
+------------------------*/
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase.config.js";
+import useAuth from "../hooks/useAuth";
+//----------------------------------------
+
+/* -----------------------
+Material UI Components 
+------------------------*/
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
@@ -12,27 +22,29 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { useState } from "react";
+//---------------------------------------------
 
 const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
   const emptyValues = {
     email: "",
     password: "",
   };
+
+  //Initialize all the necessary state used values
   const [values, setValues] = useState(emptyValues);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({ value: false, message: "", field: "" });
   const [loading, setLoading] = useState(false);
 
+  // These functions toggle the show and hide password in the material  UI password component
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
   };
 
+  // This takes the input email and password and checks for validity. More client side could be added here
   function validateInputs(email, password) {
     const result = { success: false, message: "", field: "" };
-
     if (!email) {
       result.message = "Email Value Missing";
       result.field = "email";
@@ -49,14 +61,16 @@ const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
   }
 
   async function handleSubmit(e) {
-    setLoading(true);
+    setLoading(true); // Adds the loading (Circular Progress from material ui) when the from is submitted
     const { email, password } = values;
     e.preventDefault();
     let result = validateInputs(email, password);
     if (result.success) {
-      setError({ value: false });
-      const userAuth = await useAuth(email, password);
+      setError({ value: false }); //Removes the error message from the page when the form is re-submitted
+      const userAuth = await useAuth(email, password); // See /src/components/hooks/useAuth.js for the return value from this line of code
       if (userAuth.success) {
+        // Gets the user's score from the database if authentication is successfull.
+        // See https://firebase.google.com/docs/auth. With emphasis on the 'web' dropdown of the 'Authentication' section aswell as the "Cloud Firestore" section to understand more
         const docRef = doc(db, "best-scores", userAuth.result.uid);
         const user = await getDoc(docRef);
         const userData = user.data();

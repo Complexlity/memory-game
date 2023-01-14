@@ -9,6 +9,9 @@ import Cards from "./Cards";
 import Header from "./Header";
 import Redirect from "./Redirect";
 import MobileHeader from "./MobileHeader";
+import SignUp from "./SignUp";
+import Login from "./Login";
+import Redirect from "./Redirect";
 //-----------------------------------------------
 
 /*-----------------------
@@ -26,12 +29,16 @@ import gojoSatoru from "../assets/gojo-satoru.jpg";
 import gingFreeccs from "../assets/ging.jpg";
 import spongeBob from "../assets/spongebob.jpg";
 import levi from "../assets/levi.jpg";
-import { useEffect, useState } from "react";
-import SignUp from "./SignUp";
-import Login from "./Login";
+//------------------------------------------------
+
+/* ---------------------
+Firebase Functions
+----------------------*/
 import { db } from "../../firebase.config.js";
 import { doc, setDoc } from "firebase/firestore";
-import Redirect from "./Redirect";
+//-------------------------------------------------------
+
+// Put together initial cards data using the imported images
 const cardInit = [
   { title: "Naruto", avatar: naruto, id: uniqid(), selected: false },
   { title: "Aang", avatar: aang, id: uniqid(), selected: false },
@@ -78,6 +85,7 @@ function App() {
   const [signUp, setSignUp] = useState(false);
   const [userData, setUserData] = useState(false);
 
+  // Logs out the user and returns all state values to default
   function resetAll() {
     if (confirm("Do you want to continue ?")) {
       localStorage.removeItem("memGameUser");
@@ -146,6 +154,7 @@ function App() {
       return card;
     });
     if (score > bestScore) {
+      // Updates the user's bestscore whenever a higher score is attained.
       if (userData) {
         try {
           const docRef = doc(db, "best-scores", userData.id);

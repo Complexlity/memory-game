@@ -1,6 +1,16 @@
+import { useState } from "react";
+
+/* -----------------------
+Firebase/Authentication functions
+------------------------*/
 import useAuth from "../hooks/useAuth";
-import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase.config.js";
+//---------------------------------------------
+
+/* -----------------------
+Material UI Components
+------------------------*/
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
@@ -12,7 +22,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { useState } from "react";
+//---------------------------------------------------
 
 const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
   const emptyValues = {
@@ -21,17 +31,19 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
     password: "",
     confirmPassword: "",
   };
+  //Initialize all the necessary state used values
   const [values, setValues] = useState(emptyValues);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({ value: false, message: "", field: "" });
   const [loading, setLoading] = useState(false);
 
+  // These functions toggle the show and hide password in the material  UI password component
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
   };
 
+  // This takes all the input values and checks for validity of each of them. It aswell show some error on the particular component where there is one
   function validateInputs(values) {
     const result = { success: false, message: "", field: "" };
     const { displayName, email, password, confirmPassword } = values;
@@ -67,14 +79,16 @@ const SignUp = ({ setLogin, setSignUp, setUserData, bestScore }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
+    setLoading(true); // Adds the loading (Circular Progress from material ui) when the from is submitted
     let result = validateInputs(values);
     const { displayName, email, password } = values;
     if (result.success) {
-      setError({ value: false });
-      const userAuth = await useAuth(email, password, false);
-      setError({ value: false });
+      setError({ value: false }); //Removes the error message from the page when the form is re-submitted
+      const userAuth = await useAuth(email, password, false); // See /src/components/hooks/useAuth.js for the return value from this line of code
       if (userAuth.success) {
+        /*These few blocks, writes the current user score into the database as well as all the user authentication information
+         See https://firebase.google.com/docs/auth. With emphasis on the 'web' dropdown of the 'Authentication' section aswell as the "Cloud Firestore" section to understand more */
+
         const userId = userAuth.result.uid;
         const docRef = doc(db, "best-scores", userId);
         const userData = { displayName, score: bestScore };
