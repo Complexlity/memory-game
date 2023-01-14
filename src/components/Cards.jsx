@@ -1,5 +1,6 @@
 import Card from "./Card";
 
+// This takes in the cards object and loops through to create each card component (see Card.jsx to see what the card component is )
 const Cards = ({ cards, makeSelected }) => {
   return (
     <div>

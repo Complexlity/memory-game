@@ -1,8 +1,19 @@
+import { useEffect, useState } from "react";
+import "../index.css";
+import uniqid from "uniqid"; // Creates a unique id number to use in components. See https://www.npmjs.com/package/uniqid for more information
+/* ----------------------------
+Components
+----------------------*/
+
 import Cards from "./Cards";
 import Header from "./Header";
+import Redirect from "./Redirect";
 import MobileHeader from "./MobileHeader";
-import "../index.css";
-import uniqid from "uniqid";
+//-----------------------------------------------
+
+/*-----------------------
+  Card Images
+  -----------------------*/
 import naruto from "../assets/naruto.jpg";
 import aang from "../assets/aang.jpg";
 import alita from "../assets/alita.jpg";
@@ -41,6 +52,7 @@ const cardInit = [
   { title: "Jenny", avatar: fighterGirl, id: uniqid(), selected: false },
 ];
 
+// Utitlity function to shuffle the array of objects
 function getRandom(arr, n = arr.length) {
   var result = new Array(n),
     len = arr.length,
@@ -55,7 +67,9 @@ function getRandom(arr, n = arr.length) {
   return result;
 }
 
+// This is the top level function which all the components and shared functions live
 function App() {
+  // Initializes all used state objects
   const [cards, setCards] = useState([...cardInit]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
@@ -72,6 +86,7 @@ function App() {
     }
   }
 
+  // Function to get the best score from local storage as well as whether user has reached the max score attainable
   useEffect(() => {
     let memGameUserData = localStorage.getItem("memGameUser");
     if (memGameUserData) {
@@ -87,6 +102,7 @@ function App() {
     }
   }, []);
 
+  // Takes in the id of a card object and either sets it as selected or if it already is, dispatches game loss
   function makeSelected(id) {
     let myCards = [...cards];
     let result = selectId(myCards, id);
@@ -110,6 +126,7 @@ function App() {
     }
   }
 
+  // Filters the array to figure out if the clicked item was previously selected or not
   function selectId(arr, id) {
     let lost = false;
     for (let item of arr) {
@@ -121,6 +138,7 @@ function App() {
     return [arr, lost];
   }
 
+  // Resets the scores as well as the selected cards when game is either lost or max score is reacheed
   function resetToDefault(value = false) {
     let newCard = cardInit.map((card) => {
       card.id = uniqid();

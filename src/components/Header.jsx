@@ -13,6 +13,7 @@ const Header = ({ score, bestScore, max, setLogin, userData, resetAll }) => {
     setLogOutButton(!logOutButton);
   }
 
+  // This takes in the present score, best score as well as whether the maximum attainable score has been reached. Note: Those values are further passed down to the 'Scoreboard' components. See Scoreboard.jsx for more information
   function hideLogOut() {
     buttonRef.current.style.display = "none";
     setLogOutButton(!logOutButton);
