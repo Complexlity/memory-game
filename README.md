@@ -1,7 +1,7 @@
 # Memory Game
 
 Game application to test for retentive ability
-[Live Demo](https://complexlity-memory-game.netlify.app/) :point_left:
+[Live Demo](https://complexlity-beta-memory-game.netlify.app/) :point_left:
 
 ![Memory Game Homepage](/src/assets/readme-img.png)
 ![Login Page](/src/assets/readme-img2.png)
