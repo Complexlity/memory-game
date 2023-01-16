@@ -3,16 +3,23 @@
 Game application to test for retentive ability
 [Live Demo](https://complexlity-memory-game.netlify.app/) :point_left:
 
+![Memory Game Homepage](/src/assets/readme-img.png)
+![Login Page](/src/assets/readme-img2.png)
+
 ## Features
 
 - Tracks the clicked cards
 - Updates scoreboard
 - Updates best score (persistent)
+- Login and signup to save score (New)
 
 ## Technologies used
 
 - JavaScript
 - React
+- Firebase
+- React icons
+- Material-UI
 - Framer motion
 - TailwindCSS
 
