@@ -1,14 +1,40 @@
-# MEMORY GAME
+# Memory Game
 
-## Technologies
-<a href="https://reactjs.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/640px-React-icon.svg.png" alt="drawing" width="40"/></a>
-<a href="https://vitejs.dev/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Vitejs-logo.svg/1039px-Vitejs-logo.svg.png" alt="drawing" width="40"/></a>
-<a href="https://tailwindcss.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png" alt="drawing" width="40"/></a>
-<a href="https://www.framer.com/"><img src="https://reactjsexample.com/content/images/2020/04/motion.png" alt="drawing" width="40"/></a>
+Game application to test for retentive ability
+[Live Demo](https://complexlity-memory-game.netlify.app/) :point_left:
 
-[Live Preview](https://complexlity-memory-game.netlify.app/)
+## Features
 
-## Coming soon...
-- Multiple Levels (Easy to Hard)
-- More images
-- Card categories
+- Tracks the clicked cards
+- Updates scoreboard
+- Updates best score (persistent)
+
+## Technologies used
+
+- JavaScript
+- React
+- Framer motion
+- TailwindCSS
+
+## Geting started
+
+### Clone repository
+
+```
+git clone https://github.com/Complexlity/memory-game.git
+cd memory-game
+```
+
+### Install dependencies
+
+```
+npm install
+```
+
+### Start Application
+
+```
+npm  run dev
+```
+
+Open the link show on the terminal in a browser (Usually `http://localhost:5173`)
