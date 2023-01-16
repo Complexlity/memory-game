@@ -3,6 +3,8 @@
 Game application to test for retentive ability
 [Live Demo](https://complexlity-memory-game.netlify.app/) :point_left:
 
+![Memory Game](/src/assets/readme-img.png)
+
 ## Features
 
 - Tracks the clicked cards
