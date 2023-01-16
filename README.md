@@ -1,5 +1,7 @@
 # Memory Game
 
+**n/b** Switch to the `auth` branch to checkout the login feature
+
 Game application to test for retentive ability
 [Live Demo](https://complexlity-memory-game.netlify.app/) :point_left:
 
