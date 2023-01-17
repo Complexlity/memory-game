@@ -14,7 +14,7 @@ import { CircularProgress } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";
 
-const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
+const Login = ({ setLogin, setSignUp, setBestScore, setUserData, setMax }) => {
   const emptyValues = {
     email: "",
     password: "",
@@ -63,6 +63,7 @@ const Login = ({ setLogin, setSignUp, setBestScore, setUserData }) => {
         const gameUserData = { ...userData, id: user.id };
         setUserData(gameUserData);
         setBestScore(gameUserData.score);
+        if (gameUserData.score == 12) setMax(true);
         setLogin(false);
         alert(`Welcome ${gameUserData.displayName}`);
         localStorage.setItem("memGameUser", JSON.stringify(gameUserData));

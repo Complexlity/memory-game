@@ -68,6 +68,7 @@ function App() {
     if (confirm("Do you want to continue ?")) {
       localStorage.removeItem("memGameUser");
       setUserData(false);
+      setMax(false);
       resetToDefault("min");
     }
   }
@@ -78,6 +79,7 @@ function App() {
       memGameUserData = JSON.parse(memGameUserData);
       setUserData(memGameUserData);
       setBestScore(memGameUserData.score);
+      console.log(memGameUserData);
       if (memGameUserData.score == 12) setMax(true);
     } else {
       let yourScore = localStorage.getItem("MemoryScore");
@@ -191,6 +193,7 @@ function App() {
           setSignUp={setSignUp}
           setUserData={setUserData}
           setBestScore={setBestScore}
+          setMax={setMax}
         />
       )}
     </div>
