@@ -77,7 +77,7 @@ function getRandom(arr, n = arr.length) {
 function App() {
   // Initializes all used state objects
   const [cards, setCards] = useState([...cardInit]);
-  const [score, setScore] = useState(10);
+  const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [max, setMax] = useState(false);
   const [login, setLogin] = useState(false);
