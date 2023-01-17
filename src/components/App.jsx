@@ -11,7 +11,6 @@ import Redirect from "./Redirect";
 import MobileHeader from "./MobileHeader";
 import SignUp from "./SignUp";
 import Login from "./Login";
-import Redirect from "./Redirect";
 //-----------------------------------------------
 
 /*-----------------------
