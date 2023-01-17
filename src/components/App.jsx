@@ -57,7 +57,7 @@ function getRandom(arr, n = arr.length) {
 
 function App() {
   const [cards, setCards] = useState([...cardInit]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(10);
   const [bestScore, setBestScore] = useState(0);
   const [max, setMax] = useState(false);
   const [login, setLogin] = useState(false);
@@ -128,14 +128,15 @@ function App() {
       return card;
     });
     if (score > bestScore) {
+      let scores = value == "max" ? 12 : score;
       if (userData) {
         try {
           const docRef = doc(db, "best-scores", userData.id);
           setDoc(docRef, {
             displayName: userData.displayName,
-            score,
+            score: scores,
           });
-          const gameUserData = { ...userData, score };
+          const gameUserData = { ...userData, score: scores };
           localStorage.setItem("memGameUser", JSON.stringify(gameUserData));
         } catch (error) {
           alert("Something Went Wrong. Your Score Is Not Saved");
