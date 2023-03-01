@@ -1,6 +1,6 @@
 # Memory Game
 
-**n/b** Switch to the `auth` branch to checkout the login feature
+**NEW:** Switch to the `auth` branch to checkout the login feature
 
 Game application to test for retentive ability
 [Live Demo](https://complexlity-beta-memory-game.netlify.app/) :point_left:
@@ -14,6 +14,21 @@ Game application to test for retentive ability
 - Updates scoreboard
 - Updates best score (persistent)
 - Login and signup to save score (New)
+
+## Branches
+
+There are four branches associated with the repository
+
+1. `main`: This branch contains the deployed codebase
+2. `with-comments`: This branch contains same features as main but with documentation/comments in the code
+3. `auth`: The branch contains an additional feature to login and save scores using firebase
+4. `auth-with-comments`: This branch contains similar code as auth but with documentation and comments in the code
+
+### FAQs
+
+Question: Why not merge this branch to the `auth` branch
+
+Answer: I personally believe in writing clean codes and try as much as possible to make it self explanatory. I have made this new branch to give better understanding to users who may not have much(or any) experience using the technologies used here
 
 ## Technologies used
 
