@@ -13,13 +13,18 @@ Game application to test for retentive ability
 - Updates scoreboard
 - Updates best score (persistent)
 
-## New Feature Alert!!
+## Branches
 
-For better description of the code clone the `with-comments` branch
+There are four branches associated with the repository
+
+1. `main`: This branch contains the deployed codebase
+2. `with-comments`: This branch contains same features as main but with documentation/comments in the code
+3. `auth`: The branch contains an additional feature to login and save scores using firebase
+4. `auth-with-comments`: This branch contains similar code as auth but with documentation and comments in the code
 
 ### FAQs
 
-Question: Why not merge it to the `main` branch
+Question: Why not merge `with-comments` to the `main` branch
 
 Answer: I personally believe in writing clean codes and try as much as possible to make it self explanatory. But for the sake of reaching beginner levels I have made this new branch
 
