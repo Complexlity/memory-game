@@ -1,6 +1,6 @@
 # Memory Game
 
-**n/b** Switch to the `auth` branch to checkout the login feature
+**NEW:** Switch to the `auth` branch to checkout the login feature
 
 Game application to test for retentive ability
 [Live Demo](https://complexlity-memory-game.netlify.app/) :point_left:
@@ -26,7 +26,7 @@ There are four branches associated with the repository
 
 Question: Why not merge `with-comments` to the `main` branch
 
-Answer: I personally believe in writing clean codes and try as much as possible to make it self explanatory. But for the sake of reaching beginner levels I have made this new branch
+Answer: I personally believe in writing clean codes and try as much as possible to make it self explanatory. I have made this new branch to give better understanding to users who may not have much(or any) experience using the technologies used here
 
 ## Technologies used
 
