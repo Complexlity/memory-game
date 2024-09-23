@@ -159,7 +159,7 @@ function App() {
 
   return (
     <div className={`App bg-gray-800`}>
-      <Redirect />
+      {/*<Redirect /> */} 
       <Header
         score={score}
         bestScore={bestScore}
